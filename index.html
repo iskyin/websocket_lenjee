@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Copyright" content="子伯">
+    <title>lenjee</title>
+    <link rel="shortcut icon" href="./static/images/lenjee.jpg" type="image/x-icon">
+    <script type="text/javascript">
+      !function (win) {
+        /* 设计图文档宽度 */
+        var docWidth = 750;
+        var doc = win.document,
+        docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize';
+        var recalc = (function refreshRem() {
+          var clientWidth = docEl.getBoundingClientRect().width;
+          /* 8.55：小于320px不再缩小，11.2：大于420px不再放大 */
+          docEl.style.fontSize = Math.max(Math.min(20 * (clientWidth / docWidth), 11.2), 8.55) * 5 + 'px';
+          return refreshRem;
+        })();
+        /* 添加倍屏标识，安卓为1 */
+        docEl.setAttribute('data-dpr', win.navigator.appVersion.match(/iphone/gi) ? win.devicePixelRatio : 1);
+        /* IOS8以上给html添加hairline样式，以便特殊处理 */
+        if (/iP(hone|od|ad)/.test(win.navigator.userAgent)) {
+          if (parseInt(win.navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/)[1], 10) >= 8)
+            doc.documentElement.classList.add('hairline');
+        }
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      }(window);
+    </script>
+    <link rel="stylesheet" href="./static/css/reset.css">
+    <link rel="stylesheet" href="./static/css/master.css">
+  </head>
+  <body>
+    <div class="title">
+      聊天室
+    </div>
+
+    <div id='main' class="main"></div>
+
+    <div id='add' class="add">
+      <input type="text" id='addInput' name="" placeholder="请输入昵称" value="">
+      <button id='addBtn' class="btn">加入</button>
+    </div>
+
+    <div class="send">
+      <input type="text" id='sendInput' name="" placeholder="请输入聊天内容" value="">
+      <button id='sendBtn' >发送</button>
+    </div>
+
+    <script type="text/javascript" src="./static/javascripts/index.js"></script>
+  </body>
+</html>
